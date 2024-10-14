@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client/book.css') }}" />
+<title>Meet a private care giver</title>
+{% endblock head %}
+
+{% block main %}
+<main>
+  {% if private_id %}
+  <form action="/client/booking/private/{{ private_id }}" method="post">
+    <div class="client-book-title">
+      Register to meet <span>{{ private_name }}</span>
+    </div>
+    <div class="client-book-message">
+      <label>Message to care giver</label>
+      <textarea
+        name="client_message"
+        placeholder="Message (Optional)"
+      ></textarea>
+    </div>
+    <div class="client-book-submit">
+      <input
+        type="submit"
+        name="book_submit"
+        value="Book"
+      />
+    </div>
+  </form>
+  {% endif %}
+  {% if home_id %}
+  <form action="/client/booking/home/{{ home_id }}" method="post">
+    <div class="client-book-title">
+      Register to meet <span>{{ home_name }}</span>
+    </div>
+    <div class="client-book-message">
+      <label>Message to home care</label>
+      <textarea
+        name="client_message"
+        placeholder="Message (Optional)"
+      ></textarea>
+    </div>
+    <div class="client-book-submit">
+      <input
+        type="submit"
+        name="book_submit"
+        value="Book"
+      />
+    </div>
+  </form>
+  {% endif %}
+</main>
+{% endblock main %}
+
+{% block footer %}
+<footer>
+  <div class="company-contacts">
+    <div class="company-name">Golden Years Garden</div>
+    <div class="company-social-media">
+      <a href="#"><img src="{{ url_for('static', filename='images/facebook-dark.png') }}" alt="" /></a>
+      <a href="#"><img src="{{ url_for('static', filename='images/instagram-dark.png') }}" alt="" /></a>
+      <a href="#"><img src="{{ url_for('static', filename='images/twitter-dark.png') }}" alt="" /></a>
+    </div>
+  </div>
+  <div class="care-givers-register">
+    <a href="/home/register"
+      ><button>Become a home care giver</button></a
+    >
+    <a href="/private/register"
+      ><button>Become a private care giver</button></a
+    >
+  </div>
+</footer>
+{% endblock footer %}

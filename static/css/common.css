@@ -1,0 +1,38 @@
+@import url(./navbar.css);
+
+/* Root CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #eeedeb;
+  --secondary-color: #e0ccbe;
+  --button-color: #3c3633;
+  --text-color: #fbf9f1;
+  --light-color: #ffbb99;
+  --logo-purple: #502c3d;
+  --logo-grey: #9c5e4d;
+  --shade-color: #747264;
+}
+
+body {
+  background-color: var(--primary-color);
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+.form-warning img,
+ .form-success img {
+  width: 25px;
+  height: 25px;
+}

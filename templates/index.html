@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+<title>Elder Care</title>
+<script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script defer src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+
+{% endblock head %}
+
+{% block top_nav %}
+{% if client %}
+<div class="profile-container">
+  <div class="notifications">
+    <div class="notification-nav">
+      <img src="{{ url_for('static', filename='images/bell.png') }}" alt="" />
+      {% if notification_count > 0 %}
+      <div class="count">{{ notification_count }}</div>
+      {% else %}
+      <div class="count" style="display: none">0</div>
+      {% endif %}
+    </div>
+    <div class="notification-content" style="display: none">
+      {% for notification in notifications %}
+      <div class="notification-card">
+        <div class="notification-title">
+          <div class="notification-image">
+            <img src="{{ notification['image'] }}" alt="" />
+          </div>
+          <span>{{ notification['title'] }}</span>
+        </div>
+        <div class="notification-message">{{ notification['message'] }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="profile">
+    <div class="profile-image" style="background-image: url({{ client['photo'] }})"></div>
+    <div class="profile-items" style="display: none">
+      <a href="/client/profile"><div class="my-profile">Profile</div></a>
+      <a href="/client/logout"><div class="logout">Logout</div></a>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="login-container">
+  <a href="/client/login">
+    <button id="login">Client Login</button>
+  </a>
+</div>
+{% endif %}
+{% endblock top_nav %}
+
+{% block links %}
+
+<ul class="links">
+  <li><a href="/" class="active">Home</a></li>
+  <li><a href="/about">About US</a></li>
+  <li><a href="/home">Elderly Home</a></li>
+  <li><a href="/private">Private Care</a></li>
+  <li><a href="/contacts">Contact US</a></li>
+</ul>
+
+{% endblock links %}
+
+{% block main %}
+
+<header>
+  <div class="slider">
+    <img src="{{ url_for('static', filename='images/elder1.jpg') }}" alt="" id="slide-1" />
+    <img src="{{ url_for('static', filename='images/elder2.jpg') }}" alt="" id="slide-2" />
+    <img src="{{ url_for('static', filename='images/elder3.jpg') }}" alt="" id="slide-3" />
+    <img src="{{ url_for('static', filename='images/elder4.jpg') }}" alt="" id="slide-4" />
+    <img src="{{ url_for('static', filename='images/elder5.jpg') }}" alt="" id="slide-5" />
+  </div>
+  <div class="slider-content">
+    <div class="slogan">Get a place to call home as a senior</div>
+    <div class="select-care">
+      <a href="views/home_care/index.html"
+        ><button>Look for Elderly Home</button></a
+      >
+      <a href="views/private_care/index.html"
+        ><button>Look for Private Care</button></a
+      >
+    </div>
+  </div>
+  <div class="slider-nav">
+    <input type="radio" name="slider_radio" id="slider-radio-1" checked />
+    <input type="radio" name="slider_radio" id="slider-radio-2" />
+    <input type="radio" name="slider_radio" id="slider-radio-3" />
+    <input type="radio" name="slider_radio" id="slider-radio-4" />
+    <input type="radio" name="slider_radio" id="slider-radio-5" />
+  </div>
+</header>
+<main>
+  <div class="home-care">
+    <div class="home-care-service-title">Home Care Services</div>
+    <div class="home-care-service-container">
+      <div class="home-care-service-card">
+        <img src="{{ url_for('static', filename='images/home_care1.jpg') }}" alt="" />
+        <div class="care-service-content">
+          <div class="care-service-title">Health Services</div>
+          <div class="care-service-details">
+            We provide 24-hour monitoring for the elderly sick. Professional
+            doctors and nurses are on-call to assist with any medical
+            emergency as well as provide medicine. Nurses ensure that the
+            elderly patient has taken all the prescribed medicine at the
+            right time.
+          </div>
+        </div>
+      </div>
+      <div class="home-care-service-card">
+        <img src="{{ url_for('static', filename='images/home_care2.jpg') }}" alt="" />
+        <div class="care-service-content">
+          <div class="care-service-title">Nutrition</div>
+          <div class="care-service-details">
+            We have brought in chefs and nutritionist to prepare the
+            healthiest food for the elders. This includes a balanced diet as
+            well as ensure that the elders receive at least three meals a
+            day. The kitchen also ensures special diet for the elders with
+            special nutrition. Nutritionist advice on the best course meal
+            for the elder patient.
+          </div>
+        </div>
+      </div>
+      <div class="home-care-service-card">
+        <img src="{{ url_for('static', filename='images/home_care3.jpg') }}" alt="" />
+        <div class="care-service-content">
+          <div class="care-service-title">Companionship</div>
+          <div class="care-service-details">
+            Our staff are more than care givers; they are your family. They
+            are trained professionals in areas of psychology which aids them
+            in identifying human behavior. This means they learn to make
+            conversations with the elders in a way that keeps them warm and
+            aware of their environment and the people around them. They set
+            up groups and activities that keep the elders busy and
+            entertained.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="personal-care">
+    <div class="personal-care-service-title">Personal Care Services</div>
+    <div class="personal-care-service-container">
+      <div class="personal-care-service-card">
+        <img src="{{ url_for('static', filename='images/personal_assistance.jpg') }}" alt="" />
+        <div class="care-service-content">
+          <div class="care-service-title">Physical assistance</div>
+          <div class="care-service-details">
+            Personal care givers provide assistance at home as the client
+            needs. This includes assistance in cooking and determining the
+            best diet, assistance in physical exercise and occasionally
+            cleaning the house.
+          </div>
+        </div>
+      </div>
+      <div class="personal-care-service-card">
+        <img src="{{ url_for('static', filename='images/personal_health.jpg') }}" alt="" />
+        <div class="care-service-content">
+          <div class="care-service-title">Health monitoring</div>
+          <div class="care-service-details">
+            Personal care givers are trained medical professionals and
+            therefore they stay close to monitor and report any medical
+            emergencies and complications. They immediately handle any
+            emergencies or call the hospital they are in partnership to
+            handle the emergency.
+          </div>
+        </div>
+      </div>
+      <div class="personal-care-service-card">
+        <img src="{{ url_for('static', filename='images/personal_companion.jpg') }}" alt="" />
+        <div class="care-service-content">
+          <div class="care-service-title">Personal Companion</div>
+          <div class="care-service-details">
+            Apart from being personal assistants, personal care givers can
+            also participate in conversations and general companionship.
+            They can create or participate in activities that keep the
+            client entertained including games and physical exercises.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock main %}
+
+{% block footer %}
+<footer>
+  <div class="company-contacts">
+    <div class="company-name">Golden Years Garden</div>
+    <div class="company-social-media">
+      <a href="https://facebook.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/facebook-dark.png') }}" alt="" />
+      </a>
+      <a href="https://instagram.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/instagram-dark.png') }}" alt="" />
+      </a>
+      <a href="https://twitter.com/@goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/twitter-dark.png') }}" alt="" />
+      </a>
+    </div>
+  </div>
+  <div class="care-givers-register">
+    <a href="/home/register"
+      ><button>Become a home care giver</button></a
+    >
+    <a href="/private/register"
+      ><button>Become a private care giver</button></a
+    >
+  </div>
+</footer>
+{% endblock footer %}

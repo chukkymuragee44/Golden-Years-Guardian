@@ -1,0 +1,57 @@
+@import url(../common.css);
+
+main {
+  height: 92vh;
+  display: flex;
+}
+
+main .side-bar {
+  background-color: white;
+  width: 15%;
+}
+
+main .side-bar ul a {
+  color: gray;
+  font-weight: bold;
+}
+
+main .side-bar ul li {
+  padding: 10px 5px;
+  margin: 2px;
+  border-radius: 5px;
+}
+
+main .side-bar ul a:hover > li {
+  background-color: rgba(156, 94, 77, 0.3);
+  cursor: pointer;
+  color: var(--logo-grey);
+}
+
+main .side-bar ul .active {
+  background-color: rgba(156, 94, 77, 0.3);
+  color: var(--logo-grey);
+}
+
+/* content */
+main .content {
+  width: 85%;
+}
+
+main .content .content-title {
+  background-color: var(--logo-purple);
+  color: white;
+  height: 6vh;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  font-weight: bold;
+}
+
+main .content .content-details {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: scroll;
+  height: 86vh;
+}

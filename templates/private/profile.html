@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/private/profile.css') }}" />
+<title>Private Care Dashboard</title>
+<script defer src="{{ url_for('static', filename='js/image_loader.js') }}"></script>
+<script defer src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+{% endblock head %}
+
+{% block top_nav %}
+<div class="profile-container">
+  <div class="notifications">
+    <div class="notification-nav">
+      <img src="{{ url_for('static', filename='images/bell.png') }}" alt="" />
+      {% if notification_count > 0 %}
+      <div class="count">{{ notification_count }}</div>
+      {% else %}
+      <div class="count" style="display: none">0</div>
+      {% endif %}
+    </div>
+    <div class="notification-content" style="display: none">
+      {% for notification in notifications %}
+      <div class="notification-card">
+        <div class="notification-title">
+          <div class="notification-image">
+            <img src="{{ notification['image'] }}" alt="" />
+          </div>
+          <span>{{ notification['title'] }}</span>
+        </div>
+        <div class="notification-message">{{ notification['message'] }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="profile">
+    <div class="profile-image" style="background-image: url({{ private['image'] }})"></div>
+    <div class="profile-items" style="display: none">
+      <a href="/private/profile"><div class="my-profile">Profile</div></a>
+      <a href="/private/logout"><div class="logout">Logout</div></a>
+    </div>
+  </div>
+</div>
+{% endblock top_nav %}
+
+{% block main %}
+<main>
+  <div class="side-bar">
+    <ul>
+      <a href="/private/dashboard"><li>dashboard</li></a>
+      <a href="/private/profile"><li class="active">profile</li></a>
+      <a href="/private/appointments"><li>appointments</li></a>
+      <a href="/private/clients"><li>clients</li></a>
+      <a href="/private/requests"><li>requests</li></a>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="content-title">Profile</div>
+    <div class="content-details">
+      <form action="/private/profile/update" method="post" class="profile-container">
+        <div class="profile-image-container">
+          <div class="profile-image" style="background-image: url({{ private['image'] }})">
+            <input
+              type="file"
+              id="profile-file"
+              style="display: none"
+            />
+            <input
+              type="text"
+              name="private_image"
+              id="profile-image-placeholder"
+              style="display: none"
+              value="{{ private['image'] }}"
+            />
+          </div>
+          <div class="profile-edit">
+            <img src="{{ url_for('static', filename='images/pencil.png') }}" alt="" />
+          </div>
+        </div>
+        <div class="profile-name profile-input">
+          <label>Name</label>
+          <input type="text" name="private_name" value="{{ private['name'] }}" />
+        </div>
+        <div class="profile-phone profile-input">
+          <label>Phone</label>
+          <input type="tel" name="private_phone" value="{{ private['phone'] }}" />
+        </div>
+        <div class="profile-email profile-input">
+          <label>Email</label>
+          <input type="email" name="private_email" value="{{ private['email'] }}" />
+        </div>
+        <div class="profile-facebook profile-input">
+          <label>Facebook</label>
+          <input type="text" name="private_facebook" value="{{ private['facebook'] }}" />
+        </div>
+        <div class="profile-instagram profile-input">
+          <label>Instagram</label>
+          <input type="text" name="private_instagram" value="{{ private['instagram'] }}" />
+        </div>
+        <div class="profile-phone profile-input">
+          <label>Details</label>
+          <textarea name="private_details">{{ private['details'] }}</textarea>
+        </div>
+        <div class="profile-password profile-input">
+          <label>Password</label>
+          <input type="password" name="private_password" value="{{ private['password'] }}" />
+        </div>
+        <div class="profile-update">
+          <button type="submit" name="private_update">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock main %}

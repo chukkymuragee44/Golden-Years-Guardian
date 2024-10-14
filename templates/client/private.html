@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client/private.css') }}" />
+<title>Private care</title>
+<script defer src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+{% endblock head %}
+
+{% block top_nav %}
+<div class="profile-container">
+  <div class="notifications">
+    <div class="notification-nav">
+      <img src="{{ url_for('static', filename='images/bell.png') }}" alt="" />
+      {% if notification_count > 0 %}
+      <div class="count">{{ notification_count }}</div>
+      {% else %}
+      <div class="count" style="display: none">0</div>
+      {% endif %}
+    </div>
+    <div class="notification-content" style="display: none">
+      {% for notification in notifications %}
+      <div class="notification-card">
+        <div class="notification-title">
+          <div class="notification-image">
+            <img src="{{ notification['image'] }}" alt="" />
+          </div>
+          <span>{{ notification['title'] }}</span>
+        </div>
+        <div class="notification-message">{{ notification['message'] }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="profile">
+    <div class="profile-image" style="background-image: url({{ client['photo'] }})"></div>
+    <div class="profile-items" style="display: none">
+      <a href="/client/profile"><div class="my-profile">Profile</div></a>
+      <a href="/client/logout"><div class="logout">Logout</div></a>
+    </div>
+  </div>
+</div>
+{% endblock top_nav %}
+
+{% block main %}
+<main>
+  <div class="side-bar">
+    <ul>
+      <a href="/client/dashboard"><li>dashboard</li></a>
+      <a href="profile.html"><li>profile</li></a>
+      <a href="/client/home"><li>home care</li></a>
+      <a href="/client/private"><li class="active">private care</li></a>
+      <a href="/client/appointments"><li>appointments</li></a>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="content-nav">Private Care</div>
+    <div class="content-details">
+      {% for private in privates %}
+      <div class="private-care-card">
+      <div class="private-care-image" style="background-image: url({{ private['image'] }})"></div>
+      <div class="private-care-content">
+        <div class="private-care-title">{{ private["name"] }}</div>
+        <div class="private-care-details">{{ private["details"] }}</div>
+        <div class="private-care-nav">
+          <div class="private-care-contacts">
+            <div class="private-care-contacts-content">
+              <img src="{{ url_for('static', filename='images/phone.png') }}" alt="" />
+              <div class="private-care-contacts-details">{{ private["phone"] }}</div>
+            </div>
+            <div class="private-care-contacts-content">
+              <img src="{{ url_for('static', filename='images/email.png') }}" alt="" />
+              <div class="private-care-contacts-details">{{ private["email"] }}</div>
+            </div>
+            <div class="private-care-contacts-content">
+              <img src="{{ url_for('static', filename='images/facebook-dark.png') }}" alt="" />
+              <div class="private-care-contacts-details">{{ private["facebook"] }}</div>
+            </div>
+            <div class="private-care-contacts-content">
+              <img src="{{ url_for('static', filename='images/instagram-dark.png') }}" alt="" />
+              <div class="private-care-contacts-details">{{ private["instagram"] }}</div>
+            </div>
+          </div>
+          {% if private['status'] == 'pending' or private['status'] == 'accepted' %}
+          <span class="booked">
+            <button>{{ private['status'] }}</button>
+          </span>
+          {% endif %}
+          {% if private['status'] == 'active' %}
+          <a href="/client/appointments">
+            <button>{{ private['status'] }}</button>
+          </a>
+          {% endif %}
+          {% if 'status' not in private and 'status' not in client and client['status'] != 'active' %}
+          <a href="/client/booking/private/{{ private['_id'] }}">
+            <button>Book a room</button>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+{% endblock main %}

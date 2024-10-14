@@ -1,0 +1,239 @@
+/* Nav */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 8vh;
+  background-color: var(--shade-color);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 30px;
+  height: 30px;
+}
+
+.logo .logo-name {
+  font-weight: bold;
+  color: var(--light-color);
+  font-size: 25px;
+}
+
+.login-container button {
+  padding: 10px 15px;
+  background-color: var(--button-color);
+  color: var(--text-color);
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+nav .links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: 6vh;
+  background-color: var(--secondary-color);
+}
+
+nav .links li a {
+  color: var(--logo-grey);
+  padding: 7.5px 5px;
+  font-weight: bold;
+}
+
+nav .links li .active {
+  color: brown;
+  border-bottom: 2px solid brown;
+}
+
+nav .links li a:hover {
+  color: brown;
+  border-bottom: 2px solid brown;
+}
+
+/* Profile */
+nav .profile-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+nav .profile-container .notifications {
+  position: relative;
+}
+
+nav .profile-container .notifications .notification-nav {
+  position: relative;
+  cursor: pointer;
+}
+
+nav .profile-container .notifications .notification-nav img {
+  width: 25px;
+  height: 25px;
+}
+
+nav .profile-container .notifications .notification-nav .count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-2px, -5px);
+  background-color: red;
+  color: white;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav .profile-container .notifications .notification-content {
+  background-color: white;
+  border: 2px solid rgb(233, 233, 233);
+  border-radius: 4px;
+  width: 20vw;
+  height: 50vh;
+  overflow-y: scroll;
+  position: absolute;
+  transform: translate(-220px, 5px);
+}
+
+nav .profile-container .notifications .notification-content .notification-card {
+  font-size: 16px;
+}
+
+nav .profile-container .notifications .notification-card:not(:last-child) {
+  border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+nav .profile-container .notification-content .notification-card .notification-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+nav .profile-container .notification-content .notification-card img {
+  width: 40px;
+  height: 40px;
+}
+
+nav .profile-container .notification-card .notification-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(233, 233, 233);
+  padding: 10px;
+  background-color: aliceblue;
+}
+
+nav .profile-container .notification-card .notification-message {
+  padding: 10px;
+  font-size: 14px;
+}
+
+nav .profile-container .profile {
+  position: relative;
+}
+
+nav .profile-container .profile .profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+nav .profile-container .profile .profile-items {
+  background-color: white;
+  border: 2px solid rgb(233, 233, 233);
+  font-size: 14px;
+  position: absolute;
+  z-index: 1;
+  transform: translateX(-35px);
+  margin-top: 2px;
+  border-radius: 4px;
+}
+
+nav .profile-container .profile .profile-items div {
+  padding: 5px 20px;
+}
+
+nav .profile-container .profile .profile-items div:hover {
+  cursor: pointer;
+  background-color: var(--logo-grey);
+  color: white;
+}
+
+nav .profile-container .profile .profile-items div:not(.logout) {
+  border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+main {
+  min-height: 60vh;
+}
+
+/* Footer */
+footer {
+  background-color: var(--logo-purple);
+  color: var(--text-color);
+  height: 26vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.company-contacts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.company-contacts .company-name {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.company-contacts .company-social-media img {
+  width: 30px;
+  height: 30px;
+}
+
+.care-givers-register button {
+  padding: 10px 20px;
+  border: 2px solid var(--logo-grey);
+  color: var(--logo-grey);
+  background-color: transparent;
+}
+
+.care-givers-register a:first-child button {
+  background-color: var(--logo-grey);
+  color: var(--text-color);
+}
+
+.care-givers-register a:first-child button:hover {
+  background-color: transparent;
+  color: var(--logo-grey);
+  cursor: pointer;
+}
+
+.care-givers-register a:last-child button:hover {
+  background-color: var(--logo-grey);
+  color: var(--text-color);
+  cursor: pointer;
+}

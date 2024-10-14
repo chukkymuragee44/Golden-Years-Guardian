@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client/dashboard.css') }}" />
+<title>Client Dashboard</title>
+<script defer src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+{% endblock head %}
+
+{% block top_nav %}
+<div class="profile-container">
+  <div class="notifications">
+    <div class="notification-nav">
+      <img src="{{ url_for('static', filename='images/bell.png') }}" alt="" />
+      {% if notification_count > 0 %}
+      <div class="count">{{ notification_count }}</div>
+      {% else %}
+      <div class="count" style="display: none">0</div>
+      {% endif %}
+    </div>
+    <div class="notification-content" style="display: none">
+      {% for notification in notifications %}
+      <div class="notification-card">
+        <div class="notification-title">
+          <div class="notification-image">
+            <img src="{{ notification['image'] }}" alt="" />
+          </div>
+          <span>{{ notification['title'] }}</span>
+        </div>
+        <div class="notification-message">{{ notification['message'] }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="profile">
+    <div class="profile-image" style="background-image: url({{ client['photo'] }})"></div>
+    <div class="profile-items" style="display: none">
+      <a href="/client/profile"><div class="my-profile">Profile</div></a>
+      <a href="/client/logout"><div class="logout">Logout</div></a>
+    </div>
+  </div>
+</div>
+{% endblock top_nav %}
+
+{% block main %}
+<main>
+  <div class="side-bar">
+    <ul>
+      <a href="/client/dashboard"><li class="active">dashboard</li></a>
+      <a href="/client/profile"><li>profile</li></a>
+      <a href="/client/home"><li>home care</li></a>
+      <a href="/client/private"><li>private care</li></a>
+      <a href="/client/appointments"><li>appointments</li></a>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="summary">
+      <div class="details">
+        <div class="details-name">{{ client["first_name"] }} {{ client["last_name"] }}</div>
+        <div class="details-location">
+          <span class="details-location-region">{{ client["region"] }}</span>,
+          <span class="details-location-county">{{ client["county"] }}</span> -
+          <span class="details-location-country">Kenya</span>
+        </div>
+      </div>
+      <div class="card-summary">
+        <div class="card">
+          <div class="card-title">Home Care Available</div>
+          <div class="card-count">{{ home_count }}</div>
+          <div class="card-details">
+            <a href="/client/home">view details</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Private Care Available</div>
+          <div class="card-count">{{ private_count }}</div>
+          <div class="card-details">
+            <a href="/client/private">view details</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Appointments Today</div>
+          <div class="card-count">{{ appointment_count }}</div>
+          <div class="card-details">
+            <a href="/client/appointments">view details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock main %}

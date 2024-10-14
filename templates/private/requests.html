@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/private/clients.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/private/requests.css') }}" />
+<title>Private Care Dashboard</title>
+<script defer src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+{% endblock head %}
+
+{% block top_nav %}
+<div class="profile-container">
+  <div class="notifications">
+    <div class="notification-nav">
+      <img src="{{ url_for('static', filename='images/bell.png') }}" alt="" />
+      {% if notification_count > 0 %}
+      <div class="count">{{ notification_count }}</div>
+      {% else %}
+      <div class="count" style="display: none">0</div>
+      {% endif %}
+    </div>
+    <div class="notification-content" style="display: none">
+      {% for notification in notifications %}
+      <div class="notification-card">
+        <div class="notification-title">
+          <div class="notification-image">
+            <img src="{{ notification['image'] }}" alt="" />
+          </div>
+          <span>{{ notification['title'] }}</span>
+        </div>
+        <div class="notification-message">{{ notification['message'] }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="profile">
+    <div class="profile-image" style="background-image: url({{ private['image'] }})"></div>
+    <div class="profile-items" style="display: none">
+      <a href="/private/profile"><div class="my-profile">Profile</div></a>
+      <a href="/private/logout"><div class="logout">Logout</div></a>
+    </div>
+  </div>
+</div>
+{% endblock top_nav %}
+
+{% block main %}
+<main>
+  <div class="side-bar">
+    <ul>
+      <a href="/private/dashboard"><li>dashboard</li></a>
+      <a href="/private/profile"><li>profile</li></a>
+      <a href="/private/appointments"><li>appointments</li></a>
+      <a href="/private/clients"><li>clients</li></a>
+      <a href="/private/requests"><li class="active">requests</li></a>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="content-title">Clients</div>
+    <div class="content-details">
+      {% if single_request %}
+      <div class="client-details">
+        <div class="client-title">Details</div>
+        <div class="client-table">
+          <div class="table-headers">photo</div>
+          <div>
+            {% if single_request['photo'] == "" %}
+            <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="" />
+            {% else %}
+            <img src="{{ single_request['photo'] }}" alt="" />
+            {% endif %}
+          </div>
+          <div class="table-headers">id</div>
+          <div>{{ single_request['_id'] }}</div>
+          <div class="table-headers">first name</div>
+          <div>{{ single_request['first_name'] }}</div>
+          <div class="table-headers">last name</div>
+          <div>{{ single_request['last_name'] }}</div>
+          <div class="table-headers">age</div>
+          <div>{{ single_request['age'] }}</div>
+          <div class="table-headers">phone</div>
+          <div>{{ single_request['phone'] }}</div>
+          <div class="table-headers">email</div>
+          <div>{{ single_request['email'] }}</div>
+          <div class="table-headers">region</div>
+          <div>{{ single_request['region'] }}</div>
+          <div class="table-headers">county</div>
+          <div>{{ single_request['county'] }}</div>
+          <div class="table-headers">emergency contact's name</div>
+          <div>{{ single_request['emergency_name'] }}</div>
+          <div class="table-headers">emergency contact's number</div>
+          <div>{{ single_request['emergency_contact'] }}</div>
+          <div class="table-headers">marital status</div>
+          <div>{{ single_request['marital_status'] }}</div>
+          <div class="table-headers">number of children</div>
+          <div>{{ single_request['children_number'] }}</div>
+        </div>
+        <div class="client-actions">
+          <a href="/private/requests" class="more">
+            <button>Back</button>
+          </a>
+          <a href="/private/requests/add_client/{{ single_request['_id'] }}" class="appoint">
+            <button>Add client</button>
+          </a>
+        </div>
+      </div>
+      {% else %}
+      <div class="content-table">
+        <div class="table-headers">id</div>
+        <div class="table-headers">first name</div>
+        <div class="table-headers">last name</div>
+        <div class="table-headers">age</div>
+        <div class="table-headers">phone</div>
+        <div class="table-headers">email</div>
+        <div class="table-headers">status</div>
+        <div class="table-headers">actions</div>
+        {% for client in clients %}
+        <div class="table-content table-id" data-client="0">{{ client['_id'] }}</div>
+        <div class="table-content" data-client="0">{{ client['first_name'] }}</div>
+        <div class="table-content" data-client="0">{{ client['last_name'] }}</div>
+        <div class="table-content" data-client="0">{{ client['age'] }}</div>
+        <div class="table-content" data-client="0">{{ client['phone'] }}</div>
+        <div class="table-content" data-client="0">{{ client['email'] }}</div>
+        <div class="table-content status" data-client="0">pending</div>
+        <div class="actions" data-client="0">
+          <a href="/private/requests/{{ client['_id'] }}" class="more" data-client="0">
+            <button data-client="0">Details</button>
+          </a>
+          <a href="/private/requests/add_client/{{ client['_id'] }}" class="appoint" data-client="0">
+            <button data-client="0">Add client</button>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</main>
+
+{% if add_client %}
+<div class="add-client">
+  <a href="/private/requests/{{ single_request['_id'] }}" class="client-close">
+    <img src="{{ url_for('static', filename='images/close.png') }}" alt="">
+  </a>
+  {% if context and context["warning"] %}
+  <div class="form-warning">
+    <img src="{{ url_for('static', filename='images/error.png') }}" alt="">
+    <span>{{ context["warning"] }}</span>
+  </div>
+  {% endif %}
+  <form id="client-book" action="/private/requests/add_client/{{ single_request['_id'] }}" method="post">
+    <div class="client-book-title">
+      Add <span id="client-name">{{ single_request['first_name'] }}</span> as a client
+    </div>
+    <div class="client-book-message">
+      <label>Message to client</label>
+      {% if context and context['client_message'] != "" %}
+      <textarea name="private_message" placeholder="Message">{{ context['client_message'] }}</textarea>
+      {% else %}
+      <textarea name="private_message" placeholder="Message"></textarea>
+      {% endif %}
+    </div>
+    <div class="client-book-submit">
+      <input
+        type="submit"
+        name="book_submit"
+        value="Add Client"
+        id="book-submit"
+      />
+    </div>
+  </form>
+</div>
+{% endif %}
+{% endblock main %}

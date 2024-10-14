@@ -1,0 +1,105 @@
+@import url(common.css);
+
+main .content .private-care-card .private-care-image {
+  height: 100px;
+  width: 10%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+main .content .private-care-card {
+  box-shadow: 5px 5px 5px 5px rgb(187, 187, 187);
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+main .content .private-care-card .private-care-content {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  gap: 10px;
+}
+
+main .content .private-care-card .private-care-content .private-care-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--logo-grey);
+}
+
+main .content .private-care-card .private-care-content .private-care-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid var(--logo-purple);
+  padding: 10px;
+}
+
+main
+  .content
+  .private-care-card
+  .private-care-content
+  .private-care-nav
+  a
+  button {
+  background-color: var(--logo-purple);
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  border: 2px solid var(--logo-purple);
+  padding: 10px;
+}
+
+main
+  .content
+  .private-care-card
+  .private-care-content
+  .private-care-nav
+  span
+  button {
+  background-color: transparent;
+  color: var(--logo-purple);
+  font-weight: bold;
+  border-radius: 10px;
+  border: 2px solid var(--logo-purple);
+  padding: 10px;
+}
+
+main
+  .content
+  .private-care-card
+  .private-care-content
+  .private-care-nav
+  a
+  button:hover {
+  background-color: transparent;
+  color: var(--logo-purple);
+  cursor: pointer;
+}
+
+main .content .private-care-card .private-care-nav .private-care-contacts img {
+  width: 15px;
+  height: 15px;
+}
+
+main .content .private-care-card .private-care-nav .private-care-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  gap: 10px;
+  color: var(--logo-grey);
+  font-size: 14px;
+}
+
+main
+  .content
+  .private-care-card
+  .private-care-nav
+  .private-care-contacts
+  .private-care-contacts-content {
+  display: flex;
+  gap: 5px;
+}

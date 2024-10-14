@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/private/login.css') }}" />
+<title>Private Login</title>
+{% endblock head %}
+
+{% block top_nav %}
+<div class="login-container">
+  <a href="/client/login">
+    <button id="login">Client Login</button>
+  </a>
+</div>
+{% endblock top_nav %}
+
+{% block main %}
+<main>
+  {% if context and context["warning"] %}
+  <div class="form-warning">
+    <img src="{{ url_for('static', filename='images/error.png') }}" alt="">
+    <span>{{ context["warning"] }}</span>
+  </div>
+  {% endif %}
+  <form id="private-login" action="/private/login" method="post">
+    <div class="private-login-title">Private Login</div>
+    <div class="private-login-email">
+      {% if context and context["login_email"] != "" %}
+      <input
+        type="email"
+        name="login_email"
+        value="{{ context['login_email'] }}"
+      />
+      {% else %}
+      <input
+        type="email"
+        name="login_email"
+        placeholder="Email"
+      />
+      {% endif %}
+    </div>
+    <div class="private-login-password">
+      {% if context and context["login_password"] != "" %}
+      <input
+        type="password"
+        name="login_password"
+        value="{{ context['login_password'] }}"
+      />
+      {% else %}
+      <input
+        type="password"
+        name="login_password"
+        placeholder="Password"
+      />
+      {% endif %}
+    </div>
+    <div class="private-login-submit">
+      <input
+        type="submit"
+        name="login_submit"
+        value="Login"
+        id="login-submit"
+      />
+    </div>
+    <div class="private-login-register">
+      Don't have an account yet
+      <a href="/private/register" id="private-register">Register</a>
+    </div>
+  </form>
+</main>
+{% endblock main %}
+
+{% block footer %}
+<footer>
+  <div class="company-contacts">
+    <div class="company-name">Golden Years Garden</div>
+    <div class="company-social-media">
+      <a href="https://facebook.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/facebook-dark.png') }}" alt="" />
+      </a>
+      <a href="https://instagram.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/instagram-dark.png') }}" alt="" />
+      </a>
+      <a href="https://twitter.com/@goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/twitter-dark.png') }}" alt="" />
+      </a>
+    </div>
+  </div>
+  <div class="care-givers-register">
+    <a href="/home/register"
+      ><button>Become a home care giver</button></a
+    >
+    <a href="/private/register"
+      ><button>Become a private care giver</button></a
+    >
+  </div>
+</footer>
+{% endblock footer %}

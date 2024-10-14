@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/private/styles.css') }}" />
+<title>Private caregivers</title>
+<script defer src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+{% endblock head %}
+
+{% block top_nav %}
+{% if client %}
+<div class="profile-container">
+  <div class="notifications">
+    <div class="notification-nav">
+      <img src="{{ url_for('static', filename='images/bell.png') }}" alt="" />
+      {% if notification_count > 0 %}
+      <div class="count">{{ notification_count }}</div>
+      {% else %}
+      <div class="count" style="display: none">0</div>
+      {% endif %}
+    </div>
+    <div class="notification-content" style="display: none">
+      {% for notification in notifications %}
+      <div class="notification-card">
+        <div class="notification-title">
+          <div class="notification-image">
+            <img src="{{ notification['image'] }}" alt="" />
+          </div>
+          <span>{{ notification['title'] }}</span>
+        </div>
+        <div class="notification-message">{{ notification['message'] }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="profile">
+    <div class="profile-image" style="background-image: url({{ client['photo'] }})"></div>
+    <div class="profile-items" style="display: none">
+      <a href="/client/profile"><div class="my-profile">Profile</div></a>
+      <a href="/client/logout"><div class="logout">Logout</div></a>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="login-container">
+  <a href="/client/login">
+    <button id="login">Client Login</button>
+  </a>
+</div>
+{% endif %}
+{% endblock top_nav %}
+
+{% block links %}
+<ul class="links">
+  <li><a href="/">Home</a></li>
+  <li><a href="/about">About US</a></li>
+  <li><a href="/home">Elderly Home</a></li>
+  <li><a href="/private" class="active">Private Care</a></li>
+  <li><a href="/contacts">Contact US</a></li>
+</ul>
+{% endblock links %}
+
+{% block main %}
+<main>
+  <div class="private-care-container">
+    {% for private in privates %}
+    <div class="private-care-card">
+      <div class="private-care-image" style="background-image: url({{ private['image'] }})"></div>
+      <div class="private-care-content">
+        <div class="private-care-title">{{ private["name"] }}</div>
+        <div class="private-care-details">{{ private["details"] }}</div>
+        <div class="private-care-nav">
+          <div class="private-care-contacts">
+            <div class="private-care-contacts-content">
+              <img src="{{ url_for('static', filename='images/phone.png') }}" alt="" />
+              <div class="private-care-contacts-details">{{ private["phone"] }}</div>
+            </div>
+            <div class="private-care-contacts-content">
+              <img src="{{ url_for('static', filename='images/email.png') }}" alt="" />
+              <div class="private-care-contacts-details">{{ private["email"] }}</div>
+            </div>
+            <div class="private-care-contacts-content">
+              <img src="{{ url_for('static', filename='images/facebook-dark.png') }}" alt="" />
+              <div class="private-care-contacts-details">{{ private["facebook"] }}</div>
+            </div>
+            <div class="private-care-contacts-content">
+              <img src="{{ url_for('static', filename='images/instagram-dark.png') }}" alt="" />
+              <div class="private-care-contacts-details">{{ private["instagram"] }}</div>
+            </div>
+          </div>
+          {% if private['status'] == 'pending' or private['status'] == 'accepted' %}
+          <span class="booked">
+            <button>{{ private['status'] }}</button>
+          </span>
+          {% endif %}
+          {% if private['status'] == 'active' %}
+          <a href="/client/appointments">
+            <button>{{ private['status'] }}</button>
+          </a>
+          {% endif %}
+          {% if not client %}
+          <a href="/client/booking/private/{{ private['_id'] }}">
+            <button>Book a room</button>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock main %}
+
+{% block footer %}
+<footer>
+  <div class="company-contacts">
+    <div class="company-name">Golden Years Garden</div>
+    <div class="company-social-media">
+      <a href="https://facebook.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/facebook-dark.png') }}" alt="" />
+      </a>
+      <a href="https://instagram.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/instagram-dark.png') }}" alt="" />
+      </a>
+      <a href="https://twitter.com/@goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/twitter-dark.png') }}" alt="" />
+      </a>
+    </div>
+  </div>
+  <div class="care-givers-register">
+    <a href="/home/register"
+      ><button>Become a home care giver</button></a
+    >
+    <a href="/private/register"
+      ><button>Become a private care giver</button></a
+    >
+  </div>
+</footer>
+{% endblock footer %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home/success.css') }}" />
+<title>Home Care Registration</title>
+{% endblock head %}
+
+{% block main %}
+<main style="background-image: url({{ url_for('static', filename='images/community.jpg') }})">
+  <div class="community-container">
+    <h1>Welcome to the community</h1>
+     <h2>You have successfully registered to Golden Years as an Agency</h2>
+    <p>
+      The details of the agency will appear on the home page, We will notify you through email of any request to join you.
+    </p>
+    <a href="/home"><button>Show Home Care</button></a>
+  </div>
+</main>
+{% endblock main %}
+
+{% block footer %}
+<footer>
+  <div class="company-contacts">
+    <div class="company-name">Golden Years Garden</div>
+    <div class="company-social-media">
+      <a href="https://facebook.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/facebook-dark.png') }}" alt="" />
+      </a>
+      <a href="https://instagram.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/instagram-dark.png') }}" alt="" />
+      </a>
+      <a href="https://twitter.com/@goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/twitter-dark.png') }}" alt="" />
+      </a>
+    </div>
+  </div>
+  <div class="care-givers-register">
+    <a href="/home/register"
+      ><button>Become a home care giver</button></a
+    >
+    <a href="/private/register"
+      ><button>Become a private care giver</button></a
+    >
+  </div>
+</footer>
+{% endblock footer %}

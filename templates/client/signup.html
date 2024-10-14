@@ -1,0 +1,302 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client/signup.css') }}" />
+<title>Client SignUp</title>
+{% endblock head %}
+
+{% block top_nav %}
+<div class="login-container">
+  <a href="/client/login">
+    <button id="login">Client Login</button>
+  </a>
+</div>
+{% endblock top_nav %}
+
+{% block main %}
+<main>
+  <div class="wrapper">
+    {% if context and context["warning"] %}
+    <div class="form-warning">
+      <img src="{{ url_for('static', filename='images/error.png') }}" alt="">
+      <span>{{ context["warning"] }}</span>
+    </div>
+    {% endif %}
+    <form id="client-signup" action="/client/signup" method="post">
+      <div class="client-signup-title">
+        Join the Golden Years Garden Family
+      </div>
+      <div class="client-signup-first-name">
+        {% if context and context["client_first_name"] != "" %}
+        <input
+          type="text"
+          name="client_first_name"
+          value="{{ context['client_first_name'] }}"
+        />
+        {% else %}
+        <input
+          type="text"
+          name="client_first_name"
+          placeholder="First Name"
+        />
+        {% endif %}
+      </div>
+      <div class="client-signup-last-name">
+        {% if context and context["client_last_name"] != "" %}
+        <input
+          type="text"
+          name="client_last_name"
+          value="{{ context['client_last_name'] }}"
+        />
+        {% else %}
+        <input
+          type="text"
+          name="client_last_name"
+          placeholder="Last Name"
+        />
+        {% endif %}
+      </div>
+      <div class="client-signup-username">
+        {% if context and context["client_username"] != "" %}
+        <input
+          type="text"
+          name="client_username"
+          value="{{ context['client_username'] }}"
+        />
+        {% else %}
+        <input
+          type="text"
+          name="client_username"
+          placeholder="Username"
+        />
+        {% endif %}
+      </div>
+      <div class="client-signup-age">
+        {% if context and context["client_age"] != "" %}
+        <input
+          type="number"
+          name="client_age"
+          value="{{ context['client_age'] }}"
+        />
+        {% else %}
+        <input
+          type="number"
+          name="client_age"
+          placeholder="Age"
+        />
+        {% endif %}
+      </div>
+      <div class="client-signup-phone">
+        {% if context and context["client_phone"] != "" %}
+        <input
+          type="tel"
+          name="client_phone"
+          value="{{ context['client_phone'] }}"
+        />
+        {% else %}
+        <input
+          type="tel"
+          name="client_phone"
+          placeholder="Phone"
+        />
+        {% endif %}
+      </div>
+      <div class="client-signup-email">
+        {% if context and context["client_email"] != "" %}
+        <input
+          type="email"
+          name="client_email"
+          value="{{ context['client_email'] }}"
+        />
+        {% else %}
+        <input
+          type="email"
+          name="client_email"
+          placeholder="Email"
+        />
+        {% endif %}
+      </div>
+      <div class="client-signup-region">
+        {% if context and context["client_region"] != "" %}
+        <input
+          type="text"
+          name="client_region"
+          value="{{ context['client_region'] }}"
+        />
+        {% else %}
+        <input
+          type="text"
+          name="client_region"
+          placeholder="Region"
+        />
+        {% endif %}
+      </div>
+      <div class="client-signup-county">
+        {% if context and context["client_county"] != "" %}
+        <input
+          type="text"
+          name="client_county"
+          value="{{ context['client_county'] }}"
+        />
+        {% else %}
+        <input
+          type="text"
+          name="client_county"
+          placeholder="County"
+        />
+        {% endif %}
+      </div>
+      <div class="client-signup-emergency-name">
+        {% if context and context["client_emergency_name"] != "" %}
+        <input
+          type="text"
+          name="client_emergency_name"
+          value="{{ context['client_emergency_name'] }}"
+        />
+        {% else %}
+        <input
+          type="text"
+          name="client_emergency_name"
+          placeholder="Emergency Contact Name"
+        />
+        {% endif %}
+      </div>
+      <div class="client-signup-emergency-contact">
+        {% if context and context["client_emergency_contact"] != "" %}
+        <input
+          type="tel"
+          name="client_emergency_contact"
+          value="{{ context['client_emergency_contact'] }}"
+        />
+        {% else %}
+        <input
+          type="tel"
+          name="client_emergency_contact"
+          placeholder="Emergency Phone Contact"
+        />
+        {% endif %}
+      </div>
+      <div class="client-signup-marital-status">
+        {% if context and context["client_marital_status"] != "" %}
+        <select
+          name="client_marital_status"
+        >
+          {% if context["client_marital_status"] == "married" %}
+          <option value="married" selected>Married</option>
+          {% else %}
+          <option value="married">Married</option>
+          {% endif %}
+          {% if context["client_marital_status"] == "divorced" %}
+          <option value="divorced" selected>Divorced</option>
+          {% else %}
+          <option value="divorced">Divorced</option>
+          {% endif %}
+          {% if context["client_marital_status"] == "separated" %}
+          <option value="separated" selected>Separated</option>
+          {% else %}
+          <option value="separated">Separated</option>
+          {% endif %}
+          {% if context["client_marital_status"] == "single" %}
+          <option value="single" selected>Single</option>
+          {% else %}
+          <option value="single">Single</option>
+          {% endif %}
+        </select>
+        {% else %}
+        <select
+          name="client_marital_status"
+        >
+          <option value="married">Married</option>
+          <option value="divorced">Divorced</option>
+          <option value="separated">Separated</option>
+          <option value="single">Single</option>
+        </select>
+        {% endif %}
+      </div>
+      <div class="client-signup-children">
+        {% if context and context["client_children_number"] != "" %}
+        <input
+          type="number"
+          name="client_children_number"
+          value="{{ context['client_children_number'] }}"
+        />
+        {% else %}
+        <input
+          type="number"
+          name="client_children_number"
+          placeholder="Number Of Children"
+        />
+        {% endif %}
+      </div>
+      <div class="client-signup-image">
+      {% if context and context["client_image"] != "" %}
+      <input
+        type="file"
+        name="private_image"
+        value="{{ context['client_image'] }}"
+      />
+      {% else %}
+      <input
+        type="file"
+        name="client_image"
+      />
+      {% endif %}
+    </div>
+      <div class="client-signup-password">
+        {% if context and context["client_password"] != "" %}
+        <input
+          type="password"
+          name="client_password"
+          value="{{ context['client_password'] }}"
+        />
+        {% else %}
+        <input
+          type="password"
+          name="client_password"
+          placeholder="Password"
+        />
+        {% endif %}
+      </div>
+      <div class="client-signup-submit">
+        <input
+          type="submit"
+          name="signup_submit"
+          value="Sign Up"
+          id="signup-submit"
+        />
+      </div>
+      <div class="client-signup">
+        Already have an account yet
+        <a href="/client/login" id="client-login">Login</a>
+      </div>
+    </form>
+  </div>
+</main>
+{% endblock main %}
+
+{% block footer %}
+<footer>
+  <div class="company-contacts">
+    <div class="company-name">Golden Years Garden</div>
+    <div class="company-social-media">
+      <a href="https://facebook.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/facebook-dark.png') }}" alt="" />
+      </a>
+      <a href="https://instagram.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/instagram-dark.png') }}" alt="" />
+      </a>
+      <a href="https://twitter.com/@goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/twitter-dark.png') }}" alt="" />
+      </a>
+    </div>
+  </div>
+  <div class="care-givers-register">
+    <a href="/home/register"
+      ><button>Become a home care giver</button></a
+    >
+    <a href="/private/register"
+      ><button>Become a private care giver</button></a
+    >
+  </div>
+</footer>
+{% endblock footer %}

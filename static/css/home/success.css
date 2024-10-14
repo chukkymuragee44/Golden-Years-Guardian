@@ -1,0 +1,39 @@
+@import url(../common.css);
+
+main {
+  min-height: 66vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+main .community-container {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  min-height: 66vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+main .community-container a button {
+  background-color: var(--logo-purple);
+  color: white;
+  border: 2px solid var(--logo-purple);
+  border-radius: 5px;
+  padding: 10px;
+  width: 200px;
+}
+
+main .community-container a button:hover {
+  background-color: white;
+  color: var(--logo-purple);
+  cursor: pointer;
+}

@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home/register.css') }}" />
+<title>Home Care Registration</title>
+{% endblock head %}
+
+{% block top_nav %}
+<div class="login-container">
+  <a href="/client/login">
+    <button id="login">Client Login</button>
+  </a>
+</div>
+{% endblock top_nav %}
+
+{% block main %}
+<main>
+  {% if context and context["warning"] %}
+  <div class="form-warning">
+    <img src="{{ url_for('static', filename='images/error.png') }}" alt="">
+    <span>{{ context["warning"] }}</span>
+  </div>
+  {% endif %}
+  <form id="agency-registration" method="POST">
+    <div class="agency-registration-title">
+      Home Care Agency Registration
+    </div>
+    <div class="agency-registration-name">
+      {% if context and context["agency_name"] != "" %}
+      <input
+        type="text"
+        name="agency_name"
+        value="{{ context['agency_name'] }}"
+      />
+      {% else %}
+      <input
+        type="text"
+        name="agency_name"
+        placeholder="Name"
+      />
+      {% endif %}
+    </div>
+    <div class="agency-registration-email">
+      {% if context and context["agency_email"] != "" %}
+      <input
+        type="email"
+        name="agency_email"
+        value="{{ context['agency_email'] }}"
+      />
+      {% else %}
+      <input
+        type="email"
+        name="agency_email"
+        placeholder="Email"
+      />
+      {% endif %}
+    </div>
+    <div class="agency-registration-phone">
+      {% if context and context["agency_phone"] != "" %}
+      <input
+        type="tel"
+        name="agency_phone"
+        value="{{ context['agency_phone'] }}"
+      />
+      {% else %}
+      <input
+        type="tel"
+        name="agency_phone"
+        placeholder="Phone"
+      />
+      {% endif %}
+    </div>
+    <div class="agency-registration-website">
+      {% if context and context["agency_website"] != "" %}
+      <input
+        type="text"
+        name="agency_website"
+        value="{{ context['agency_website'] }}"
+      />
+      {% else %}
+      <input
+        type="text"
+        name="agency_website"
+        placeholder="Website"
+      />
+      {% endif %}
+    </div>
+    <div class="agency-registration-region">
+      {% if context and context["agency_region"] != "" %}
+      <input
+        type="text"
+        name="agency_region"
+        value="{{ context['agency_region'] }}"
+      />
+      {% else %}
+      <input
+        type="text"
+        name="agency_region"
+        placeholder="Region"
+      />
+      {% endif %}
+    </div>
+    <div class="agency-registration-county">
+      {% if context and context["agency_county"] != "" %}
+      <input
+        type="text"
+        name="agency_county"
+        value="{{ context['agency_county'] }}"
+      />
+      {% else %}
+      <input
+        type="text"
+        name="agency_county"
+        placeholder="County"
+      />
+      {% endif %}
+    </div>
+    <div class="agency-registration-details">
+      {% if context and context["agency_details"] != "" %}
+      <textarea
+        name="agency_details"
+      >{{ context['agency_details'] }}</textarea>
+      {% else %}
+      <textarea
+        name="agency_details"
+        placeholder="Details"
+      ></textarea>
+      {% endif %}
+    </div>
+    <div class="agency-registration-image">
+      {% if context and context["agency_image"] != "" %}
+      <input
+        type="file"
+        name="agency_image"
+        value="{{ context['agency_image'] }}"
+      />
+      {% else %}
+      <input
+        type="file"
+        name="agency_image"
+      />
+      {% endif %}
+    </div>
+    <div class="agency-registration-submit">
+      <input
+        type="submit"
+        name="register_submit"
+        value="Register"
+        id="register-submit"
+      />
+    </div>
+  </form>
+</main>
+{% endblock main %}
+{% block footer %}
+<footer>
+  <div class="company-contacts">
+    <div class="company-name">Golden Years Garden</div>
+    <div class="company-social-media">
+      <a href="https://facebook.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/facebook-dark.png') }}" alt="" />
+      </a>
+      <a href="https://instagram.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/instagram-dark.png') }}" alt="" />
+      </a>
+      <a href="https://twitter.com/@goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/twitter-dark.png') }}" alt="" />
+      </a>
+    </div>
+  </div>
+  <div class="care-givers-register">
+    <a href="/home/register"
+      ><button>Become a home care giver</button></a
+    >
+    <a href="/private/register"
+      ><button>Become a private care giver</button></a
+    >
+  </div>
+</footer>
+{% endblock footer %}

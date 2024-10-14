@@ -1,0 +1,98 @@
+@import url(common.css);
+
+main .content .content-title {
+  background-color: var(--logo-purple);
+  color: white;
+  height: 6vh;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  font-weight: bold;
+}
+
+main .content .content-details {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: scroll;
+  height: 86vh;
+}
+
+main .content .profile-container {
+  margin: 10px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+main .content .profile-image-container {
+  position: relative;
+  width: fit-content;
+}
+
+main .content .profile-image-container .profile-image {
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+main .content .profile-image-container .profile-edit {
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  background-color: rgba(199, 199, 199, 0.4);
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main .content .profile-image-container .profile-edit:hover {
+  cursor: pointer;
+  background-color: rgb(199, 199, 199);
+}
+
+main .content .profile-image-container .profile-edit img {
+  width: 20px;
+  height: 20px;
+}
+
+main .content .profile-input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+main .content .profile-input label {
+  font-weight: bold;
+}
+
+main .content .profile-input input,
+main .content .profile-input select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  font-size: 16px;
+}
+
+main .content .profile-update button {
+  background-color: var(--logo-purple);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid var(--logo-purple);
+  margin: 10px;
+}
+
+main .content .profile-update button:hover {
+  background-color: transparent;
+  color: var(--logo-purple);
+  cursor: pointer;
+}

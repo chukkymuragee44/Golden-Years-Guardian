@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client/login.css') }}" />
+<title>Client Login</title>
+{% endblock head %}
+
+{% block main %}
+<main>
+  {% if context and context["warning"] %}
+  <div class="form-warning">
+    <img src="{{ url_for('static', filename='images/error.png') }}" alt="">
+    <span>{{ context["warning"] }}</span>
+  </div>
+  {% endif %}
+  <form id="client-login" action="/client/login" method="post">
+    <div class="client-login-title">Client Login</div>
+    <div class="client-login-username">
+      {% if context and context["client_username"] != "" %}
+      <input
+        type="text"
+        name="client_username"
+        value="{{ context['client_username'] }}"
+      />
+      {% else %}
+      <input
+        type="text"
+        name="client_username"
+        placeholder="Username"
+      />
+      {% endif %}
+    </div>
+    <div class="client-login-password">
+      {% if context and context["client_password"] != "" %}
+      <input
+        type="password"
+        name="client_password"
+        value="{{ context['client_password'] }}"
+      />
+      {% else %}
+      <input
+        type="password"
+        name="client_password"
+        placeholder="Password"
+      />
+      {% endif %}
+    </div>
+    <div class="client-login-submit">
+      <input
+        type="submit"
+        name="login_submit"
+        value="Login"
+        id="login-submit"
+      />
+    </div>
+    <div class="client-login-register">
+      Don't have an account yet
+      <a href="/client/signup" id="client-register">Register</a>
+    </div>
+  </form>
+</main>
+{% endblock main %}
+
+{% block footer %}
+<footer>
+  <div class="company-contacts">
+    <div class="company-name">Golden Years Garden</div>
+    <div class="company-social-media">
+      <a href="https://facebook.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/facebook-dark.png') }}" alt="" />
+      </a>
+      <a href="https://instagram.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/instagram-dark.png') }}" alt="" />
+      </a>
+      <a href="https://twitter.com/@goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/twitter-dark.png') }}" alt="" />
+      </a>
+    </div>
+  </div>
+  <div class="care-givers-register">
+    <a href="/home/register"
+      ><button>Become a home care giver</button></a
+    >
+    <a href="/private/register"
+      ><button>Become a private care giver</button></a
+    >
+  </div>
+</footer>
+{% endblock footer %}

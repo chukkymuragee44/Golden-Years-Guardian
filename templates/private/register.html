@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/private/register.css') }}" />
+<title>Private Care Registration</title>
+{% endblock head %}
+
+{% block top_nav %}
+<div class="login-container">
+  <a href="/client/login">
+    <button id="login">Client Login</button>
+  </a>
+</div>
+{% endblock top_nav %}
+
+{% block main %}
+<main>
+  {% if context and context["warning"] %}
+  <div class="form-warning">
+    <img src="{{ url_for('static', filename='images/error.png') }}" alt="">
+    <span>{{ context["warning"] }}</span>
+  </div>
+  {% endif %}
+  <form id="private-registration" action="/private/register" method="post">
+    <div class="private-registration-title">Private Care Registration</div>
+    <div class="private-registration-name">
+      {% if context and context["private_name"] != "" %}
+      <input
+        type="text"
+        name="private_name"
+        value="{{ context['private_name'] }}"
+      />
+      {% else %}
+      <input
+        type="text"
+        name="private_name"
+        placeholder="Name"
+      />
+      {% endif %}
+    </div>
+    <div class="private-registration-email">
+      {% if context and context["private_email"] != "" %}
+      <input
+        type="email"
+        name="private_email"
+        value="{{ context['private_email'] }}"
+      />
+      {% else %}
+      <input
+        type="email"
+        name="private_email"
+        placeholder="Email"
+      />
+      {% endif %}
+    </div>
+    <div class="private-registration-phone">
+      {% if context and context["private_phone"] != "" %}
+      <input
+        type="tel"
+        name="private_phone"
+        value="{{ context['private_phone'] }}"
+      />
+      {% else %}
+      <input
+        type="tel"
+        name="private_phone"
+        placeholder="Phone"
+      />
+      {% endif %}
+    </div>
+    <div class="private-registration-facebook">
+      {% if context and context["private_facebook"] != "" %}
+      <input
+        type="text"
+        name="private_facebook"
+        value="{{ context['private_facebook'] }}"
+      />
+      {% else %}
+      <input
+        type="text"
+        name="private_facebook"
+        placeholder="Facebook"
+      />
+      {% endif %}
+    </div>
+    <div class="private-registration-instagram">
+      {% if context and context["private_instagram"] != "" %}
+      <input
+        type="text"
+        name="private_instagram"
+        value="{{ context['private_instagram'] }}"
+      />
+      {% else %}
+      <input
+        type="text"
+        name="private_instagram"
+        placeholder="Instagram"
+      />
+      {% endif %}
+    </div>
+    <div class="private-registration-details">
+      {% if context and context["private_details"] != "" %}
+      <textarea name="private_details">{{ context['private_details'] }}</textarea>
+      {% else %}
+      <textarea name="private_details" placeholder="Details"></textarea>
+      {% endif %}
+    </div>
+    <div class="private-registration-image">
+      {% if context and context["private_image"] != "" %}
+      <input
+        type="file"
+        name="private_image"
+        value="{{ context['private_image'] }}"
+      />
+      {% else %}
+      <input
+        type="file"
+        name="private_image"
+      />
+      {% endif %}
+    </div>
+    <div class="private-registration-password">
+      {% if context and context["private_password"] != "" %}
+      <input
+        type="password"
+        name="private_password"
+        value="{{ context['private_password'] }}"
+      />
+      {% else %}
+      <input
+        type="password"
+        name="private_password"
+        placeholder="Password"
+      />
+      {% endif %}
+    </div>
+    <div class="private-registration-submit">
+      <input
+        type="submit"
+        name="register_submit"
+        value="Register"
+        id="register-submit"
+      />
+    </div>
+    <div class="private-registration-register">
+      Already have an account
+      <a href="/private/login" id="private-login">Login</a>
+    </div>
+  </form>
+</main>
+{% endblock main %}
+{% block footer %}
+<footer>
+  <div class="company-contacts">
+    <div class="company-name">Golden Years Garden</div>
+    <div class="company-social-media">
+      <a href="https://facebook.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/facebook-dark.png') }}" alt="" />
+      </a>
+      <a href="https://instagram.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/instagram-dark.png') }}" alt="" />
+      </a>
+      <a href="https://twitter.com/@goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/twitter-dark.png') }}" alt="" />
+      </a>
+    </div>
+  </div>
+  <div class="care-givers-register">
+    <a href="/home/register"
+      ><button>Become a home care giver</button></a
+    >
+    <a href="/private/register"
+      ><button>Become a private care giver</button></a
+    >
+  </div>
+</footer>
+{% endblock footer %}

@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client/success.css') }}" />
+<title>Home Care Registration</title>
+<script defer src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+{% endblock head %}
+
+{% block top_nav %}
+<div class="profile-container">
+  <div class="notifications">
+    <div class="notification-nav">
+      <img src="{{ url_for('static', filename='images/bell.png') }}" alt="" />
+      {% if notification_count > 0 %}
+      <div class="count">{{ notification_count }}</div>
+      {% else %}
+      <div class="count" style="display: none">0</div>
+      {% endif %}
+    </div>
+    <div class="notification-content" style="display: none">
+      {% for notification in notifications %}
+      <div class="notification-card">
+        <div class="notification-title">
+          <div class="notification-image">
+            <img src="{{ notification['image'] }}" alt="" />
+          </div>
+          <span>{{ notification['title'] }}</span>
+        </div>
+        <div class="notification-message">{{ notification['message'] }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="profile">
+    <div class="profile-image" style="background-image: url({{ client['photo'] }})"></div>
+    <div class="profile-items" style="display: none">
+      <a href="/client/profile"><div class="my-profile">Profile</div></a>
+      <a href="/client/logout"><div class="logout">Logout</div></a>
+    </div>
+  </div>
+</div>
+{% endblock top_nav %}
+
+{% block main %}
+<main style="background-image: url({{ url_for('static', filename='images/elder5.jpg') }})">
+  {% if private_name %}
+  <div class="community-container">
+    <h1>Welcome <span class="client-name">{{ first_name }}</span> to the family</h1>
+     <h2>Your request to meet <span class="private-name">{{ private_name }}</span> your caregiver was sent</h2>
+    <p>
+      Your details have been sent including the message, Login to your dashboard anytime to check if the request sent was approved.
+      The caregiver will contact you and schedule appointments.
+    </p>
+    <a href="/client/dashboard"><button>Dashboard</button></a>
+  </div>
+  {% endif %}
+  {% if home_name %}
+  <div class="community-container">
+    <h1>Welcome <span class="client-name">{{ first_name }}</span> to the family</h1>
+     <h2>Your request to join <span class="home-name">{{ home_name }}</span> was sent</h2>
+    <p>
+      Your details have been sent including the message, Login to your dashboard anytime to check if the request sent was approved.
+      The caregiver will contact you and schedule appointments.
+    </p>
+    <a href="/client/dashboard"><button>Dashboard</button></a>
+  </div>
+  {% endif %}
+</main>
+{% endblock main %}
+
+{% block footer %}
+<footer>
+  <div class="company-contacts">
+    <div class="company-name">Golden Years Garden</div>
+    <div class="company-social-media">
+      <a href="https://facebook.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/facebook-dark.png') }}" alt="" />
+      </a>
+      <a href="https://instagram.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/instagram-dark.png') }}" alt="" />
+      </a>
+      <a href="https://twitter.com/@goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/twitter-dark.png') }}" alt="" />
+      </a>
+    </div>
+  </div>
+  <div class="care-givers-register">
+    <a href="/home/register"
+      ><button>Become a home care giver</button></a
+    >
+    <a href="/private/register"
+      ><button>Become a private care giver</button></a
+    >
+  </div>
+</footer>
+{% endblock footer %}

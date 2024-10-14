@@ -1,0 +1,299 @@
+@import url(common.css);
+
+/* content table */
+main .content .content-details .content-table {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: grid;
+  font-size: 14px;
+  grid-template-columns: repeat(1fr, 8);
+}
+
+main .content .content-details .content-table div {
+  border: 1px solid rgb(78, 78, 78);
+  padding: 10px;
+}
+
+main .content .content-details .content-table div:nth-child(2) {
+  grid-column-start: 2;
+}
+
+main .content .content-details .content-table div:nth-child(3) {
+  grid-column-start: 3;
+}
+
+main .content .content-details .content-table div:nth-child(4) {
+  grid-column-start: 4;
+}
+
+main .content .content-details .content-table div:nth-child(5) {
+  grid-column-start: 5;
+}
+
+main .content .content-details .content-table div:nth-child(6) {
+  grid-column-start: 6;
+}
+
+main .content .content-details .content-table div:nth-child(7) {
+  grid-column-start: 7;
+}
+
+main .content .content-details .content-table div:nth-child(8) {
+  grid-column-start: 8;
+}
+
+main .content .content-details .content-table .table-headers {
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: var(--logo-purple);
+  color: white;
+}
+
+main .content .content-details .content-table .status {
+  color: var(--logo-grey);
+}
+
+main .content .content-details .content-table .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+main .content .content-details .content-table .actions span {
+  cursor: pointer;
+}
+
+main .content .content-details .content-table .actions .remove {
+  background-color: transparent;
+  color: var(--logo-purple);
+}
+
+main .content .content-details .content-table .actions button,
+main .content .content-details .client-actions button {
+  padding: 5px;
+  background-color: var(--logo-purple);
+  color: white;
+  border: 2px solid var(--logo-purple);
+  border-radius: 5px;
+}
+
+main .content .content-details .content-table .actions button:hover,
+main .content .content-details .client-actions button:hover {
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--logo-purple);
+}
+
+/* content wrapper */
+main .content-wrapper {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+
+main .content-wrapper .calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: rgb(233, 233, 233);
+}
+
+main .calendar-container .caregiver {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+main .calendar-container .caregiver .caregiver-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+main .calendar-container .caregiver {
+  font-weight: bold;
+}
+
+main .calendar-container .caregiver .caregiver-name {
+  color: var(--logo-grey);
+}
+
+main .calendar-container .calendar-nav button {
+  padding: 5px;
+  width: 100px;
+  border-radius: 5px;
+  background-color: var(--logo-purple);
+  border: 2px solid var(--logo-purple);
+  color: white;
+}
+
+main .calendar-container .calendar-nav button:hover {
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--logo-purple);
+}
+
+main .calendar-container .calendar-nav button:first-child {
+  background-color: transparent;
+  color: var(--logo-purple);
+}
+
+main .calendar-container .calendar-nav button:first-child:hover {
+  background-color: var(--logo-purple);
+  color: white;
+}
+
+main .calendar-container .calendar-nav .calendar-today-container {
+  display: flex;
+  gap: 10px;
+}
+
+main .calendar-container .calendar-nav .calendar-sliders {
+  display: flex;
+  gap: 20px;
+}
+
+main .calendar-container .calendar-nav .calendar-sliders div {
+  background-color: white;
+  width: 30px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main .calendar-container .calendar-nav .calendar-sliders div:hover {
+  background-color: rgb(211, 211, 211);
+  cursor: pointer;
+}
+
+main .calendar-container .calendar-nav .calendar-sliders img {
+  width: 20px;
+  height: 20px;
+}
+
+main .calendar-container .calendar-nav .calendar-inputs {
+  display: flex;
+  gap: 5px;
+  font-weight: bold;
+}
+
+main .calendar-container .calendar-nav .calendar-inputs .calendar-month {
+  text-transform: capitalize;
+}
+
+main .calendar-container .calendar {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+main .calendar-container .calendar .calendar-day {
+  border: 2px solid var(--logo-purple);
+  width: 14.27%;
+  min-height: 100px;
+}
+
+main .calendar-container .calendar .calendar-day:hover {
+  background-color: rgb(233, 233, 233);
+  cursor: pointer;
+  color: black;
+}
+
+main .calendar-container .calendar .calendar-active {
+  background-color: var(--logo-purple);
+  color: white;
+}
+
+main .calendar-container .calendar .calendar-day .calendar-event-details {
+  background-color: var(--logo-grey);
+  color: white;
+  padding: 2px;
+  margin: 2px;
+  font-size: 14px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main .calendar-container .calendar .calendar-day .calendar-event-details img {
+  width: 10px;
+  height: 10px;
+  display: none;
+}
+
+main
+  .calendar-container
+  .calendar
+  .calendar-day
+  .calendar-event-details:hover
+  > img {
+  cursor: pointer;
+  display: block;
+}
+
+.calendar-event-form {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-event-form .close-event {
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.calendar-event-form .close-event img {
+  width: 20px;
+  height: 20px;
+}
+
+.calendar-event-form form {
+  background-color: white;
+  padding: 10px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.calendar-event-form div {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.calendar-event-form form input {
+  padding: 10px;
+  border: none;
+  background-color: rgb(233, 233, 233);
+  border-radius: 5px;
+}
+
+.calendar-event-form form button {
+  padding: 10px;
+  border: 2px solid var(--logo-purple);
+  background-color: var(--logo-purple);
+  border-radius: 5px;
+  color: white;
+}
+
+.calendar-event-form form button:hover {
+  background-color: transparent;
+  color: var(--logo-purple);
+  cursor: pointer;
+}

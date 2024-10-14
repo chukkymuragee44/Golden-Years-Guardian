@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contacts.css') }}" />
+<title>Contacts</title>
+<script defer src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+{% endblock head %}
+
+{% block top_nav %}
+{% if client %}
+<div class="profile-container">
+  <div class="notifications">
+    <div class="notification-nav">
+      <img src="{{ url_for('static', filename='images/bell.png') }}" alt="" />
+      {% if notification_count > 0 %}
+      <div class="count">{{ notification_count }}</div>
+      {% else %}
+      <div class="count" style="display: none">0</div>
+      {% endif %}
+    </div>
+    <div class="notification-content" style="display: none">
+      {% for notification in notifications %}
+      <div class="notification-card">
+        <div class="notification-title">
+          <div class="notification-image">
+            <img src="{{ notification['image'] }}" alt="" />
+          </div>
+          <span>{{ notification['title'] }}</span>
+        </div>
+        <div class="notification-message">{{ notification['message'] }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="profile">
+    <div class="profile-image" style="background-image: url({{ client['photo'] }})"></div>
+    <div class="profile-items" style="display: none">
+      <a href="/client/profile"><div class="my-profile">Profile</div></a>
+      <a href="/client/logout"><div class="logout">Logout</div></a>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="login-container">
+  <a href="/client/login">
+    <button id="login">Client Login</button>
+  </a>
+</div>
+{% endif %}
+{% endblock top_nav %}
+
+{% block links %}
+<ul class="links">
+  <li><a href="/">Home</a></li>
+  <li><a href="/about">About US</a></li>
+  <li><a href="/home">Elderly Home</a></li>
+  <li><a href="/private">Private Care</a></li>
+  <li><a href="/contacts" class="active">Contact US</a></li>
+</ul>
+{% endblock links %}
+
+{% block main %}
+<main>
+      <div class="contact-form">
+        <div class="contact-form-title">Contact Form</div>
+        <div class="contact-form-inputs">
+          {% if content %}
+          {% if content['warning'] %}
+          <div class="contact-form-inputs form-warning">
+            <img src="{{ url_for('static', filename='images/error.png') }}" alt="">
+            <span>{{ content['warning'] }}</span>
+          </div>
+          {% else %}
+          <div class="contact-form-inputs form-success">
+            <img src="{{ url_for('static', filename='images/check.png') }}" alt="">
+            <span>{{ content['success'] }}</span>
+          </div>
+          {% endif %}
+          {% endif %}
+          <form action="" method="post">
+            <div class="contact-form-names form-container">
+              {% if content and content['first_name'] != '' %}
+              <input
+                type="text"
+                name="first_name"
+                placeholder="First Name"
+                value="{{ content['first_name'] }}"
+              />
+              {% else %}
+              <input
+                type="text"
+                name="first_name"
+                placeholder="First Name"
+              />
+              {% endif %}
+              {% if content and content['last_name'] != '' %}
+              <input
+                type="text"
+                name="last_name"
+                placeholder="Last Name"
+                value="{{ content['last_name'] }}"
+              />
+              {% else %}
+              <input
+                type="text"
+                name="last_name"
+                placeholder="Last Name"
+              />
+              {% endif %}
+            </div>
+            <div class="contact-form-email-phone form-container">
+              {% if content and content['email'] != '' %}
+              <input type="email" name="email" placeholder="Email" value="{{ content['email'] }}" />
+              {% else %}
+              <input type="email" name="email" placeholder="Email" />
+              {% endif %}
+              {% if content and content['phone'] != '' %}
+              <input type="tel" name="phone" placeholder="Phone" value="{{ content['phone'] }}" />
+              {% else %}
+              <input type="tel" name="phone" placeholder="Phone" />
+              {% endif %}
+            </div>
+            <div class="contact-form-message form-container">
+              {% if content and content['message'] != '' %}
+              <textarea
+                name="message"
+                placeholder="Message"
+                cols="30"
+                rows="10"
+              >{{ content['message'] }}</textarea>
+              {% else %}
+              <textarea
+                name="message"
+                placeholder="Message"
+                cols="30"
+                rows="10"
+              ></textarea>
+              {% endif %}
+            </div>
+            <div class="contact-form-submit">
+              <input type="submit" value="Send" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="contacts">
+        <div class="contact-info">
+          <div class="contact-info-title">Contact Us</div>
+          <div class="contact-info-phone">
+            Call Us: <span>+254 720 000 000</span>
+          </div>
+          <div class="contact-info-email">
+            Email Us: <span>info@goldenyearsgarden.com</span>
+          </div>
+        </div>
+        <div class="follow-us">
+          <div class="follow-us-title">Follow Us</div>
+          <div class="follow-social-media">
+            <a href="https://facebook.com/goldenyearsgarden" class="social-link" target="_blank">
+              <img src="{{ url_for('static', filename='images/facebook.png') }}" alt="" />
+              <div class="social-link-text">facebook</div>
+            </a>
+            <a href="https://instagram.com/goldenyearsgarden" class="social-link" target="_blank">
+              <img src="{{ url_for('static', filename='images/instagram.png') }}" alt="" />
+              <div class="social-link-text">instagram</div>
+            </a>
+            <a href="https://twitter.com/@goldenyearsgarden" class="social-link" target="_blank">
+              <img src="{{ url_for('static', filename='images/twitter.png') }}" alt="" />
+              <div class="social-link-text">twitter</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+{% endblock main %}
+
+{% block footer %}
+<footer>
+  <div class="company-contacts">
+    <div class="company-name">Golden Years Garden</div>
+    <div class="company-social-media">
+      <a href="https://facebook.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/facebook-dark.png') }}" alt="" />
+      </a>
+      <a href="https://instagram.com/goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/instagram-dark.png') }}" alt="" />
+      </a>
+      <a href="https://twitter.com/@goldenyearsgarden" class="social-link" target="_blank">
+        <img src="{{ url_for('static', filename='images/twitter-dark.png') }}" alt="" />
+      </a>
+    </div>
+  </div>
+  <div class="care-givers-register">
+    <a href="/home/register"
+      ><button>Become a home care giver</button></a
+    >
+    <a href="/private/register"
+      ><button>Become a private care giver</button></a
+    >
+  </div>
+</footer>
+{% endblock footer %}

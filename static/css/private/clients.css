@@ -1,0 +1,122 @@
+@import url(common.css);
+
+main .content .content-details .content-table {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: grid;
+  font-size: 14px;
+  grid-template-columns: repeat(1fr, 8);
+}
+
+main .content .content-details .content-table div {
+  border: 1px solid rgb(78, 78, 78);
+  padding: 10px;
+}
+
+main .content .content-details .content-table div:nth-child(2) {
+  grid-column-start: 2;
+}
+
+main .content .content-details .content-table div:nth-child(3) {
+  grid-column-start: 3;
+}
+
+main .content .content-details .content-table div:nth-child(4) {
+  grid-column-start: 4;
+}
+
+main .content .content-details .content-table div:nth-child(5) {
+  grid-column-start: 5;
+}
+
+main .content .content-details .content-table div:nth-child(6) {
+  grid-column-start: 6;
+}
+
+main .content .content-details .content-table div:nth-child(7) {
+  grid-column-start: 7;
+}
+
+main .content .content-details .content-table div:nth-child(8) {
+  grid-column-start: 8;
+}
+
+main .content .content-details .content-table .table-headers {
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: var(--logo-purple);
+  color: white;
+}
+
+main .content .content-details .content-table .status {
+  color: var(--logo-grey);
+}
+
+main .content .content-details .content-table .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+main .content .content-details .content-table .actions span {
+  cursor: pointer;
+}
+
+main .content .content-details .content-table .actions .remove {
+  background-color: transparent;
+  color: var(--logo-purple);
+}
+
+main .content .content-details .content-table .actions button,
+main .content .content-details .client-actions button {
+  padding: 5px;
+  background-color: var(--logo-purple);
+  color: white;
+  border: 2px solid var(--logo-purple);
+  border-radius: 5px;
+}
+
+main .content .content-details .content-table .actions button:hover,
+main .content .content-details .client-actions button:hover {
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--logo-purple);
+}
+
+main .content .content-details .client-details {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+main .content .client-details .client-title {
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+main .content .client-details .client-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+main .content .client-details .client-table div {
+  border: 1px solid rgb(78, 78, 78);
+  padding: 10px;
+}
+
+main .content .client-details .client-table .table-headers {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+main .content .client-details .client-table img {
+  width: 50px;
+  height: 50px;
+}
+
+main .content .content-details .client-actions {
+  margin-top: 10px;
+}
